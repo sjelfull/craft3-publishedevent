@@ -1,0 +1,50 @@
+{
+    "name": "superbig/published-event",
+    "description": "Triggers an event for entries when they are published or expire in the future",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "published event"
+    ],
+    "support": {
+        "docs": "https://github.com/sjelfull/published-event/blob/master/README.md",
+        "issues": "https://github.com/sjelfull/published-event/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Superbig",
+            "homepage": "https://superbig.co"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "~3.0.0-beta.23"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "superbig\\publishedevent\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Published Event",
+        "handle": "published-event",
+        "schemaVersion": "1.0.0",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/sjelfull/published-event/master/CHANGELOG.md",
+        "components": {
+            "publishedEventService": "superbig\\publishedevent\\services\\PublishedEventService"
+        },
+        "class": "superbig\\publishedevent\\PublishedEvent"
+    }
+}
