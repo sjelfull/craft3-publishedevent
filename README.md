@@ -2,7 +2,7 @@
 
 Triggers an event for entries when they are published or expire in the future
 
-![Screenshot](resources/img/plugin-logo.png)
+![Screenshot](resources/img/icon.png)
 
 ## Requirements
 
