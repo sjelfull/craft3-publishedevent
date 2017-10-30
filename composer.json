@@ -1,5 +1,5 @@
 {
-    "name": "superbig/published-event",
+    "name": "superbig/craft3-publishedevent",
     "description": "Triggers an event for entries when they are published or expire in the future",
     "type": "craft-plugin",
     "version": "1.0.0",
@@ -11,8 +11,8 @@
         "published event"
     ],
     "support": {
-        "docs": "https://github.com/sjelfull/published-event/blob/master/README.md",
-        "issues": "https://github.com/sjelfull/published-event/issues"
+        "docs": "https://github.com/sjelfull/craft3-publishedevent/blob/master/README.md",
+        "issues": "https://github.com/sjelfull/craft3-publishedevent/issues"
     },
     "license": "MIT",
     "authors": [
@@ -41,7 +41,7 @@
         "schemaVersion": "1.0.0",
         "hasCpSettings": false,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/sjelfull/published-event/master/CHANGELOG.md",
+        "changelogUrl": "https://raw.githubusercontent.com/sjelfull/craft3-publishedevent/master/CHANGELOG.md",
         "components": {
             "publishedEventService": "superbig\\publishedevent\\services\\PublishedEventService"
         },

@@ -18,7 +18,7 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require sjelfull/published-event
+        composer require superbig/craft3-publishedevent
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Published Event.
 
@@ -36,8 +36,6 @@ To install the plugin, follow these instructions.
 
 ## Published Event Roadmap
 
-Some things to do, and ideas for potential features:
-
-* Release it
+* Add expire event
 
 Brought to you by [Superbig](https://superbig.co)
