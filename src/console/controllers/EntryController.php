@@ -38,7 +38,15 @@ class EntryController extends Controller
         $this->stdout('Checking for published or expired entries' . PHP_EOL, Console::FG_GREY);
 
         $existingRecords = PublishedEvent::$plugin->publishedEventService->check();
+        $numExistingRecords = count($existingRecords);
+        $this->stdout( 'Found ' . $numExistingRecords . ' ' . $this->plural($numExistingRecords, 'entry', 'entries') . ' that ' . $this->plural($numExistingRecords, 'is', 'are') . ' waiting to be published or expired' . PHP_EOL, Console::FG_GREEN );
+    }
 
-        $this->stdout( 'Found ' . count($existingRecords) . ' entries that is waiting to be published or expired' . PHP_EOL, Console::FG_GREEN );
+    private function plural ($amount, $singular = '', $plural = 's')
+    {
+        if ( $amount === 1 ) {
+            return $singular;
+        }
+        return $plural;
     }
 }

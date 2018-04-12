@@ -17,6 +17,7 @@ use superbig\publishedevent\events\PublishedEvent;
 use Craft;
 use craft\base\Component;
 use superbig\publishedevent\records\PublishedEventRecord;
+use yii\db\ActiveRecord;
 
 /**
  * @author    Superbig
@@ -30,14 +31,8 @@ class PublishedEventService extends Component
 
     public function onSave (Entry $entry)
     {
-        // TODO: Save record
-        // TODO: Add job to check 1 minute after given post / expire data
+        $this->createNewRecord($entry);
     }
-
-    /*public function onPublished (PublishedEvent $event)
-    {
-        $this->raiseEvent('onPublished', $event);
-    }*/
 
     public function check ()
     {
@@ -48,8 +43,12 @@ class PublishedEventService extends Component
         $pendingIds     = $criteria->ids();
         $pendingEntries = $criteria->all();
 
+        // TODO: we also have to get the entries that either have expired or have expiration dates
+
         // Get element ids of existing records
         $existingRecords = PublishedEventRecord::find()->all();
+
+        //Craft::info('Pending records: '.json_encode($pendingIds));
 
         // If a record exists for a entry that is enabled since last check, trigger event
         /** @var PublishedEventRecord $existingRecord */
@@ -77,15 +76,7 @@ class PublishedEventService extends Component
             ]);
 
             if ( !$record ) {
-                $dateTime            = DateTimeHelper::currentTimeStamp();
-                $record              = new PublishedEventRecord();
-                $record->elementId   = $entry->id;
-                $record->siteId      = $entry->siteId;
-                $record->enableDate  = $entry->postDate;
-                $record->expireDate  = $entry->expiryDate;
-                $record->dateCreated = $dateTime;
-                $record->dateUpdated = $dateTime;
-                $record->save();
+                $record = $this->createNewRecord($entry);
 
                 $existingRecords[] = $record;
             }
@@ -101,5 +92,21 @@ class PublishedEventService extends Component
         }
 
         return $existingRecords;
+    }
+
+    private function createNewRecord( Entry $entry)
+    {
+        $dateTime            = DateTimeHelper::currentTimeStamp();
+        $record              = new PublishedEventRecord();
+        $record->elementId   = $entry->id;
+        $record->siteId      = $entry->siteId;
+        $record->enableDate  = $entry->postDate;
+        $record->expireDate  = $entry->expiryDate;
+        $record->dateCreated = $dateTime;
+        $record->dateUpdated = $dateTime;
+        $record->save();
+
+        $record->save();
+        return $record;
     }
 }

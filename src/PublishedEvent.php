@@ -91,9 +91,13 @@ class PublishedEvent extends Plugin
 
         Event::on(
             Entry::class,
-            Elements::EVENT_AFTER_SAVE_ELEMENT,
-            function (ElementEvent $event) {
-                $this->publishedEventService->onSave($event->element);
+            Entry::EVENT_AFTER_SAVE,
+            function (Event $event) {
+                $savedEntry = Craft::$app->entries->getEntryById($event->sender->id);
+                Craft::info('**PUBLISHED EVENT** saved entry: '.json_encode($savedEntry));
+                if ($savedEntry->status === 'pending' || ($savedEntry->status === 'live' && isset($savedEntry->expiryDate))) {
+                    $this->publishedEventService->onSave($savedEntry);
+                }
             }
         );
 
