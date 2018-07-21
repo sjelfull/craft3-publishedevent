@@ -38,7 +38,7 @@ class DefaultController extends Controller
 
     public function actionCheck ()
     {
-        $existingRecords = craft()->publishedEvent->check();
+        $existingRecords = Craft::$app->publishedEvent->check();
         $this->returnJson($existingRecords);
     }
 }
